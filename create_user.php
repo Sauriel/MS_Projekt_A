@@ -12,6 +12,7 @@
 			$_password = mysql_real_escape_string($_POST["password"]);
 			$_password2 = mysql_real_escape_string($_POST["password2"]);
 			$_mail = mysql_real_escape_string($_POST["mail"]);
+			$_admin = mysql_real_escape_string($_POST["admin"]);
 
 			$_checkifuserexists = mysql_query("SELECT * FROM users WHERE
 						username='$_username'
@@ -24,8 +25,8 @@
 				echo "<h1>Der User existiert bereits!</h1>";				
 			} else {
 				# Befehl für die MySQL Datenbank
-				mysql_query("INSERT INTO `d0149a8f`.`users` (`id`, `username`, `password`, `email`, `active`, `last_login`)
-								VALUES (NULL, '$_username', md5('$_password'), '$_mail', '1', '')");
+				mysql_query("INSERT INTO `d0149a8f`.`users` (`id`, `username`, `password`, `email`, `active`, `last_login`, `admin`)
+								VALUES (NULL, '$_username', md5('$_password'), '$_mail', '1', '', '$_admin')");
 				echo "<h1>User " . $_username . " wurde angelegt.</h1>";
 			}
  		 }
@@ -34,9 +35,12 @@
 			echo 'Passwort: <input name="password" type=password><br>';
 			echo 'Passwort wiederholen: <input name="password2" type=password><br>';
 			echo 'eMail: <input name="mail"><br>';
+			echo "<select name='admin'>";
+			echo "<option value='0'>User</option>";
+			echo "<option value='1'>Admin</option>";
+			echo "</select>";
 			echo '<input type=submit name=submit value="User erstellen">';
 		echo '</form>';
-		mysql_close($link);
 
 		echo '<a href="index.php">zur&uuml;ck</a></br>';
 	} else {

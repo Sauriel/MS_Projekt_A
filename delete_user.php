@@ -28,14 +28,14 @@
 		echo '<form method="POST" action="delete_user.php">';
 			$dropdown = "<select name='users'>";
 			while($row = mysql_fetch_assoc($result)) {
-				$dropdown .= "\r\n<option value='{$row['username']}'>{$row['username']}</option>";
+				if ($row['username'] != 'admin') {
+					$dropdown .= "\r\n<option value='{$row['username']}'>{$row['username']}</option>";
+				}
 			}
 			$dropdown .= "\r\n</select>";
 			echo $dropdown;
 			echo '<input type=submit name=submit value="User l&ouml;schen">';
 		echo '</form>';
-
-		mysql_close($link);
 
 		echo '<a href="index.php">zur&uuml;ck</a></br>';
 	} else {

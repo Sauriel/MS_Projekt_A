@@ -26,7 +26,6 @@
 			echo 'neues Passwort wiederholen: <input name="password2" type=password><br>';
 			echo '<input type=submit name=submit value="Passwort &auml;ndern">';
 		echo '</form>';
-		mysql_close($link);
 
 		echo '<a href="index.php">zur&uuml;ck</a></br>';
 	} else {
