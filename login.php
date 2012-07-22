@@ -37,11 +37,15 @@
  				# Ueberpruefe ob der User eingeloggt ist
  				if ($_SESSION["login"] == 0) {
  					# Login anzeigen
+ 					echo '<table>';
  					echo '<form method="POST" action="index.php">';
-					echo 'Ihr Username: <input name="username"><br>';
-					echo 'Ihr Passwort: <input name="password" type=password><br>';
-					echo '<input type=submit name=submit value="Einloggen">';
+ 					echo '<tr><td>Ihr Username:</td>';
+					echo '<td><input name="username"></td></tr>';
+					echo '<tr><td>Ihr Passwort:</td>';
+					echo '<td><input name="password" type=password></td></tr>';
+					echo '<tr><td colspan="2" align="center"><input type=submit name=submit value="Einloggen"></td></tr>';
 					echo '</form>';
+					echo '</table>';
  					mysql_close($link);
  					exit;
  				}

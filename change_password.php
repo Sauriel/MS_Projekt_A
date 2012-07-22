@@ -21,11 +21,15 @@
 				echo "<h1>Das Passwort f&uuml;r user " . $_username . " wurde ge&auml;ndert.</h1>";
 			}
  		 }
+ 		echo '<table>';
  		 echo '<form method="POST" action="change_password.php">';
-			echo 'neues Passwort: <input name="password" type=password><br>';
-			echo 'neues Passwort wiederholen: <input name="password2" type=password><br>';
-			echo '<input type=submit name=submit value="Passwort &auml;ndern">';
+			echo '<tr><td>neues Passwort:</td>';
+			echo '<td><input name="password" type=password></td></tr>';
+			echo '<tr><td>neues Passwort wiederholen:</td>';
+			echo '<td><input name="password2" type=password></td></tr>';
+			echo '<tr><td colspan="2" align="center"><input type=submit name=submit value="Passwort &auml;ndern"></td></tr>';
 		echo '</form>';
+		echo '</table>';
 
 		echo '<a href="index.php">zur&uuml;ck</a></br>';
 	} else {

@@ -13,21 +13,14 @@
 	</head>
 
 	<body>
+		<div class="logo"><img src="images/logo.png" alt="J.A.R.V.I.S. - just a roleplaying valued information system" /></div>
+		
     	<div class="content">
     	
 			<?php
+				echo '<table width="100%"><tr><td align="center">';
 				include("login.php");
 				if ($_SESSION["login"] == 1) {
-					echo '<table width="100%" border="1"><tr>';
-					echo '<td><a href="index.php?menu=change_password">Passwort &auml;ndern</a></td>';
-					if ($_SESSION[user][admin] == 1) {
-						echo '<td><a href="index.php?menu=create_user">Neuen User anlegen</a></td>';
-						echo '<td><a href="index.php?menu=delete_user">User l&ouml;schen</a></td>';
-					}
-					
-					echo '<td><a href="logout.php">Logout</a></td>';
-					echo '</tr>';
-					echo '<tr><td colspan="4">';
 					if ($_GET["menu"] == NULL) {
 						include("select_adventure.php");
 					} elseif ($_GET["menu"] == "change_password") {
@@ -37,16 +30,33 @@
 					} elseif ($_GET["menu"] == "delete_user") {
 						include("delete_user.php");
 					}
-					echo '</tr>';
-					#echo '<tr><td colspan="4"><strong>Inhalt von Session: </strong>';
-					#print_r($_SESSION);
-					echo '</tr></table>';
 				} else {
 					echo "Du bist nicht eingelogt!";
 				}
+				echo '</td></tr></table>';
 				mysql_close($link);
 			?>
 
         </div>
+        <?php
+			if ($_SESSION["login"] == 1) {
+       		echo '<div class="menu">';
+        			echo '<table width="100%" ><tr><td></td><td width="100px">';
+					echo '<ul>';
+  						echo '<li><img src="images/user.png" />&nbsp;<strong>' . $_SESSION[user][username] . '</strong>';
+   							echo ' <ul>';
+								echo '<li><a href="index.php?menu=change_password">Passwort &auml;ndern</a</li>';
+								if ($_SESSION[user][admin] == 1) {
+      								echo '<li><a href="index.php?menu=create_user">Neuen User anlegen</a></li>';
+      								echo '<li><a href="index.php?menu=delete_user">User l&ouml;schen</a></li>';
+      							}
+      							echo '<li><a href="logout.php">Logout</a></li>';
+							echo '</ul>';
+						echo '</li>';
+					echo '</ul>';
+					echo '</td></tr></table>';
+				echo '</div>';
+			}
+		?>
 	</body>
 </html>

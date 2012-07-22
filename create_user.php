@@ -30,17 +30,23 @@
 				echo "<h1>User " . $_username . " wurde angelegt.</h1>";
 			}
  		 }
+ 		echo '<table>';
  		 echo '<form method="POST" action="create_user.php">';
-			echo 'Username: <input name="username"><br>';
-			echo 'Passwort: <input name="password" type=password><br>';
-			echo 'Passwort wiederholen: <input name="password2" type=password><br>';
-			echo 'eMail: <input name="mail"><br>';
-			echo "<select name='admin'>";
-			echo "<option value='0'>User</option>";
-			echo "<option value='1'>Admin</option>";
-			echo "</select>";
-			echo '<input type=submit name=submit value="User erstellen">';
+			echo '<tr><td>Username:</td>';
+			echo '<td><input name="username"></td></tr>';
+			echo '<tr><td>Passwort:</td>';
+			echo '<td><input name="password" type=password></td></tr>';
+			echo '<tr><td>Passwort wiederholen:</td>';
+			echo '<td><input name="password2" type=password></td></tr>';
+			echo '<tr><td>eMail:</td>';
+			echo '<td><input name="mail"></td></tr>';
+			echo '<tr><td colspan="2" align="center"><select name="admin">';
+			echo '<option value="0">User</option>';
+			echo '<option value="1">Admin</option>';
+			echo '</select></td></tr>';
+			echo '<tr><td colspan="2" align="center"><input type=submit name=submit value="User erstellen"></td></tr>';
 		echo '</form>';
+		echo '</table>';
 
 		echo '<a href="index.php">zur&uuml;ck</a></br>';
 	} else {

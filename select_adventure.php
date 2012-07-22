@@ -47,7 +47,7 @@
 		$query = "SELECT adventure FROM adventures WHERE campaign='$_campaign'";
 		$result_a = mysql_query($query) or die(mysql_error());
 		?>
-		<table width="100%" border="0">
+		<table width="100%">
 			<tr>
 				<td width="32%">
 					<strong>Setting:</strong>
