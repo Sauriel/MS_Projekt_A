@@ -40,50 +40,65 @@
 		}
 
 		# Auswahl erstellen
-		$query = "SELECT DISTINCT setting FROM adventures";
-		$result_s = mysql_query($query) or die(mysql_error());
-		$query = "SELECT DISTINCT campaign FROM adventures WHERE setting='$_setting'";
-		$result_c = mysql_query($query) or die(mysql_error());
-		$query = "SELECT adventure FROM adventures WHERE campaign='$_campaign'";
-		$result_a = mysql_query($query) or die(mysql_error());
+		
+		# Setting anzeigen
+		$_query = "SELECT DISTINCT setting FROM adventures";
+		$_result_s = mysql_query($_query) or die(mysql_error());
+		# Kampagnen des Settings anzeigen
+		$_query = "SELECT DISTINCT campaign FROM adventures WHERE setting='$_setting'";
+		$_result_c = mysql_query($_query) or die(mysql_error());
+		# Abenteuer der Kampagne anzeigen
+		$_query = "SELECT adventure FROM adventures WHERE campaign='$_campaign'";
+		$_result_a = mysql_query($_query) or die(mysql_error());
+		# Kurzinfo des Abenteuers anzeigen
+		$_query = "SELECT short_info FROM adventures WHERE adventure='$_adventure'";
+		$_query = mysql_query($_query) or die(mysql_error());
+		$_short_info = mysql_fetch_assoc($_query, MYSQL_ASSOC);
+		# Spielleiter des Abenteuers anzeigen
+		$_query = "SELECT gamemaster FROM adventures WHERE adventure='$_adventure'";
+		$_query = mysql_query($_query) or die(mysql_error());
+		$_gm_id = mysql_fetch_assoc($_query, MYSQL_ASSOC);
+		$_query = "SELECT username FROM users WHERE id='$_gm_id[gamemaster]'";
+		$_query = mysql_query($_query) or die(mysql_error());
+		$_gamemaster = mysql_fetch_assoc($_query, MYSQL_ASSOC);
 		?>
 		<table width="100%">
 			<tr>
-				<td width="32%">
+				<td align="center" width="32%">
 					<strong>Setting:</strong>
 					<form method="POST" action="index.php">
 		
 		<?php
-			$dropdown = '<select name="setting" size=10 style="width:100%;" onchange="this.form.submit();">';
-			while($row = mysql_fetch_assoc($result_s)) {
-				$dropdown .= "\r\n<option value='{$row['setting']}'>{$row['setting']}</option>";
+			$_dropdown = '<select name="setting" size=10 style="width:100%;" onchange="this.form.submit();">';
+			while($_row = mysql_fetch_assoc($_result_s)) {
+				$_dropdown .= "\r\n<option value='{$_row['setting']}'>{$_row['setting']}</option>";
 			}
-			$dropdown .= "\r\n</select>";
-			echo $dropdown;
+			$_dropdown .= "\r\n</select>";
+			echo $_dropdown;
 		?>
 		</td>
-		<td>
+		<td align="center">
 		<strong>Kampagne:</strong>
 			
 		<?php
-			$dropdown = '<select name="campaign" size=10 style="width:98%;" onchange="this.form.submit();">';
-			while($row = mysql_fetch_assoc($result_c)) {
-				$dropdown .= "\r\n<option value='{$row['campaign']}'>{$row['campaign']}</option>";
+			$_dropdown = '<select name="campaign" size=10 style="width:98%;" onchange="this.form.submit();">';
+			while($_row = mysql_fetch_assoc($_result_c)) {
+				$_dropdown .= "\r\n<option value='{$_row['campaign']}'>{$_row['campaign']}</option>";
 			}
-			$dropdown .= "\r\n</select>";
-			echo $dropdown;
+			$_dropdown .= "\r\n</select>";
+			echo $_dropdown;
 		?>
 		</td>
-		<td width="32%">
+		<td align="center" width="32%">
 		<strong>Abenteuer:</strong>
 			
 		<?php
-			$dropdown = '<select name="adventure" size=10 style="width:100%;" onchange="this.form.submit();">';
-			while($row = mysql_fetch_assoc($result_a)) {
-				$dropdown .= "\r\n<option value='{$row['adventure']}'>{$row['adventure']}</option>";
+			$_dropdown = '<select name="adventure" size=10 style="width:100%;" onchange="this.form.submit();">';
+			while($_row = mysql_fetch_assoc($_result_a)) {
+				$_dropdown .= "\r\n<option value='{$_row['adventure']}'>{$_row['adventure']}</option>";
 			}
-			$dropdown .= "\r\n</select>";
-			echo $dropdown;
+			$_dropdown .= "\r\n</select>";
+			echo $_dropdown;
 		?>
 		</td>
 		</tr>
@@ -92,6 +107,11 @@
 		
 		<?php
 		if ($_SESSION["selectAdventure"]["adventure"] != NULL) {
+			echo '<strong>' . $_SESSION["selectAdventure"]["adventure"] . ':</strong></br>';
+			echo $_short_info[short_info];
+			echo '</br></br>';
+			echo 'Spielleiter: ' . $_gamemaster[username];
+			echo '</br></br>';
 			echo '<a href="#">' . $_SESSION["selectAdventure"]["adventure"] . ' beitreten</a> oder <a href="#">Neues Abenteuer erstellen</a>.';
 		} else {
 			echo 'Ein bestehendes Abenteuer ausw&auml;hlen oder <a href="#">Neues Abenteuer erstellen</a>.';	
