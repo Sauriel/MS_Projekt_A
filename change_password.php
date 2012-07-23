@@ -22,7 +22,7 @@
 			}
  		 }
  		echo '<table>';
- 		 echo '<form method="POST" action="change_password.php">';
+ 		 echo '<form method="POST" action="index.php?menu=change_password">';
 			echo '<tr><td>neues Passwort:</td>';
 			echo '<td><input name="password" type=password></td></tr>';
 			echo '<tr><td>neues Passwort wiederholen:</td>';

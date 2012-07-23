@@ -31,7 +31,7 @@
 			}
  		 }
  		echo '<table>';
- 		 echo '<form method="POST" action="create_user.php">';
+ 		 echo '<form method="POST" action="index.php?menu=create_user">';
 			echo '<tr><td>Username:</td>';
 			echo '<td><input name="username"></td></tr>';
 			echo '<tr><td>Passwort:</td>';

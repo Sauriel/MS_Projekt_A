@@ -1,6 +1,6 @@
 <?php
 				# Ueberpruefen ob Daten per POST gekommen sind
-				if (!empty($_POST["submit"])) {
+				if (!empty($_POST["submit"]) && $_SESSION["login"] == 0) {
 			 		# MySQL Injections vorbeugen
 					$_username = mysql_real_escape_string($_POST["username"]);
 					$_password = mysql_real_escape_string($_POST["password"]);
@@ -49,11 +49,4 @@
  					mysql_close($link);
  					exit;
  				}
-
-				# User wurde eingeloggt, Rest wird geladen, Datenbank geschlossen
-				#include("test.php");
-				#mysql_close($link);
-				
-				#echo '<h1>Sie wurden eingelogt.</h1>';
-				#echo '<a href="content.php">Weiter</a>';
 			?>

@@ -12,6 +12,7 @@
 
 	# Verbindung zur Datenbank herstellen
 	$database = mysql_select_db($_db_database, $link);
+	mysql_query("SET NAMES 'utf8'");
 
 	if (!$database) {
  		echo "Kann die Datenbank nicht benutzen: " . mysql_error();

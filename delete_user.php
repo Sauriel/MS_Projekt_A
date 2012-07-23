@@ -25,7 +25,7 @@
 		// Execute it, or return the error message if there's a problem.
 		$result = mysql_query($query) or die(mysql_error());
 		
-		echo '<form method="POST" action="delete_user.php">';
+		echo '<form method="POST" action="index.php?menu=delete_user">';
 			$dropdown = "<select name='users'>";
 			while($row = mysql_fetch_assoc($result)) {
 				if ($row['username'] != 'admin') {
