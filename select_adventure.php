@@ -55,7 +55,7 @@
 		$_query = mysql_query($_query) or die(mysql_error());
 		$_short_info = mysql_fetch_assoc($_query, MYSQL_ASSOC);
 		# Spielleiter des Abenteuers anzeigen
-		$_query = "SELECT gamemaster FROM adventures WHERE adventure='$_adventure'";
+		$_query = "SELECT gamemaster FROM adventures WHERE adventure='$_adventure' AND campaign='$_campaign' AND setting='$_setting'";
 		$_query = mysql_query($_query) or die(mysql_error());
 		$_gm_id = mysql_fetch_assoc($_query, MYSQL_ASSOC);
 		$_query = "SELECT username FROM users WHERE id='$_gm_id[gamemaster]'";

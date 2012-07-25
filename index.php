@@ -13,6 +13,7 @@
 	</head>
 
 	<body>
+		<div class="bggradient">&nbsp;</div>
 		<div class="logo"><img src="images/logo.png" alt="J.A.R.V.I.S. - just a roleplaying valued information system" /></div>
 		
     	<div class="content">
