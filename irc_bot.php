@@ -11,16 +11,14 @@
 		if ($_server["SOCKET"]) {
 			SendCommand ("NICK recordBOT\r\n");
 			SendCommand ("USER recordBOT USING PHP IRC\r\n");
-			/* Da schlecht absehbar ist, wie lange die while-Schleife laufen soll, ist
-				sie endlos initialisiert, sie wird spaeter durch "break" abgebrochen. */
-			while (true) {
+			while (!feof($_server["SOCKET"])) {
 			
 				/* Der IRC-Server sendet Text, der hier mit jedem Schleifendurchlauf
 					in $_server["READ_BUFFER"] eingelesen wird. */
 				$_server["READ_BUFFER"] = fgets($_server["SOCKET"], 1024);
 				
 				// Der empfangene Text wird hier gleich wieder sichtbar ausgegeben.
-				echo "[RECIVE] ".$_server["READ_BUFFER"]."<br>\r\n";
+				// echo "[RECIVE] ".$_server["READ_BUFFER"]."<br>\r\n";
 				
 				/* Der letzte Sting der "message of the day" lautet "End of /MOTD command.".
 					Wird dieser String empfangen, soll sich der Bot auf den IRC-Channel verbinden. */
@@ -41,13 +39,12 @@
 			flush();
 			}
 			
-			// Eine erneute Endlosschleife, da der Bot vom User manuell beendet werden soll.
-			while(true) {
+			while(!feof($_server["SOCKET"])) {
 			
 				/* Erneut wird die erste Zeile eingelesen. Dieses mal sind es direkt Strings die von
 					Usern an den Chat gesendet wurden. */
 				$_server["READ_BUFFER"] = fgets($_server["SOCKET"], 1024);
-				echo $_server["READ_BUFFER"];
+				// echo $_server["READ_BUFFER"];
 				
 				/* Hier wird das Log erstellt, eine .txt die den Names des aktuellen Datums traegt.
 					Ist sie nicht vorhanden, wird sie angelegt.
@@ -78,6 +75,16 @@
 					break;
 				}
 				
+				if (strpos($_server["READ_BUFFER"], "RTD")) {
+					for ($_counter = 1; substr($_server["READ_BUFFER"], $_counter, 1) != "!"; $_counter++) {
+						$_username .= substr($_server["READ_BUFFER"], $_counter, 1);
+					}
+					$_rtd_value = substr($_server["READ_BUFFER"], -4);
+					$_rolled_value = rand(1, intval($_rtd_value));
+					SendCommand("PRIVMSG #rpg_irc :$_username hat $_rolled_value geworfen\r\n");
+					$_username = "";
+				}
+				
 				/* Der Server sendet in regelmaessigen Abstaenden ein command namens "PING" dieses muss
 					mit "PONG" und einem vorgegebenen String zurueck an den Server gesendet werden.
 					Dieses Verfahren dient zur ueberpruefung der Latenz des Bots zum Server.
@@ -95,7 +102,7 @@
 	function SendCommand ($cmd) {
 		global $_server;
 		@fwrite($_server["SOCKET"], $cmd, strlen($cmd));
-		echo "[SEND] $cmd <br>";
+		// echo "[SEND] $cmd <br>";
 	}
 
 ?>
