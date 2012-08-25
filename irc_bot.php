@@ -4,6 +4,7 @@
 	set_time_limit(0);
 	include ("config.php");
 	$_todaysdateFix = date('d-m-y');
+	$_bot_nickname = "recordBot";
 		
 		$_server = array();
 		// fsockopen stellt eine Verbindung zu einem host her, hier der IRC-Server.
@@ -16,6 +17,7 @@
 				/* Der IRC-Server sendet Text, der hier mit jedem Schleifendurchlauf
 					in $_server["READ_BUFFER"] eingelesen wird. */
 				$_server["READ_BUFFER"] = fgets($_server["SOCKET"], 1024);
+				echo $_server["READ_BUFFER"];
 				
 				// Der empfangene Text wird hier gleich wieder sichtbar ausgegeben.
 				// echo "[RECIVE] ".$_server["READ_BUFFER"]."<br>\r\n";
@@ -24,6 +26,11 @@
 					Wird dieser String empfangen, soll sich der Bot auf den IRC-Channel verbinden. */
 				if (strpos($_server["READ_BUFFER"], "End of /MOTD command.")) {
 					SendCommand ("JOIN $_server_channel\r\n");
+				}
+				
+				if (strpos($_server["READ_BUFFER"], "Nickname is already in use.")) {
+					$_bot_nickname .= "_";
+					SendCommand ("NICK $_bot_nickname\r\n");
 				}
 				
 				/* Wurde sich erfolgreich verbunden, gibt der Server den String

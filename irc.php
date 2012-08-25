@@ -20,11 +20,11 @@ SESSION_START();
 		echo		'<tr>';
 		echo			'<td align="left" height="100">';
 							// Ein button laesst den IRC-Bot auf den Server connecten.
-		echo				'<form action="irc_bot.php">';
+		echo				'<form target="_blank" action="irc_bot.php">';
 		echo					'<input type=submit name=submit value="IRC Log Aufzeichen">';
 		echo				'</form>';
 		echo				'<form action="index.php">';
-		echo					'<input type=submit name=submit value="Zurück">';
+		echo					'<input type=submit name=submit value="Zur&uuml;ck">';
 		echo				'</form>';
 		echo			'</td>';
 		echo		'</tr>';
