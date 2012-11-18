@@ -30,6 +30,10 @@
 						include("create_user.php");
 					} elseif ($_GET["menu"] == "delete_user") {
 						include("delete_user.php");
+					} elseif ($_GET["menu"] == "adventuretime") {
+						include("adventure.php"); 
+					} elseif ($_GET["menu"] == "create_story") {
+						include("create_story.php");
 					}
 				} else {
 					echo "Du bist nicht eingelogt!";

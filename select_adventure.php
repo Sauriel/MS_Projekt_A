@@ -51,7 +51,7 @@
 		$_query = "SELECT adventure FROM adventures WHERE campaign='$_campaign'";
 		$_result_a = mysql_query($_query) or die(mysql_error());
 		# Kurzinfo des Abenteuers anzeigen
-		$_query = "SELECT short_info FROM adventures WHERE adventure='$_adventure'";
+		$_query = "SELECT short_info FROM adventures WHERE adventure='$_adventure'AND campaign='$_campaign' AND setting='$_setting'";
 		$_query = mysql_query($_query) or die(mysql_error());
 		$_short_info = mysql_fetch_assoc($_query, MYSQL_ASSOC);
 		# Spielleiter des Abenteuers anzeigen
@@ -112,9 +112,12 @@
 			echo '</br></br>';
 			echo 'Spielleiter: ' . $_gamemaster[username];
 			echo '</br></br>';
-			echo '<a href="#">' . $_SESSION["selectAdventure"]["adventure"] . ' beitreten</a> oder <a href="#">Neues Abenteuer erstellen</a>.';
+			echo '<a href="index.php?menu=adventuretime">' . $_SESSION["selectAdventure"]["adventure"] . ' beitreten</a> oder <a href="index.php?menu=create_story"> Neues Abenteuer erstellen</a>.';
+			
+			
 		} else {
-			echo 'Ein bestehendes Abenteuer ausw&auml;hlen oder <a href="#">Neues Abenteuer erstellen</a>.';	
+			echo 'Ein bestehendes Abenteuer ausw&auml;hlen oder <a href="index.php?menu=create_story">Neues Abenteuer erstellen</a>.';	
+			
 		}
 	} else {
 		echo "Du bist nicht eingelogt!";
