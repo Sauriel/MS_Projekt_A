@@ -22,10 +22,14 @@
 			if ($_password != $_password2)	{
 				echo "<h1>Die Passw&ouml;rter stimmen nicht &uuml;berein!</h1>";
 			} elseif ($_anzahl > 0) {
-				echo "<h1>Der User existiert bereits!</h1>";				
+				echo "<h1>Der User existiert bereits!</h1>";
+			} elseif (empty($_username)) {
+				echo "<h1>Du hast keinen Usernamen eingegeben!</h1>";
+			} elseif (empty($_password)) {
+				echo "<h1>Du hast kein Passwort eingegeben!</h1>";
 			} else {
 				# Befehl für die MySQL Datenbank
-				mysql_query("INSERT INTO `d0149a8f`.`users` (`id`, `username`, `password`, `email`, `active`, `last_login`, `admin`)
+				mysql_query("INSERT INTO `users` (`id`, `username`, `password`, `email`, `active`, `last_login`, `admin`)
 								VALUES (NULL, '$_username', md5('$_password'), '$_mail', '1', '', '$_admin')");
 				echo "<h1>User " . $_username . " wurde angelegt.</h1>";
 			}
