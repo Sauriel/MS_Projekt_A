@@ -1,4 +1,5 @@
 <?php
+	ob_start();
 	# mit Datenbank verbinden
 	include("conect_db.php");
     SESSION_START();
@@ -34,6 +35,10 @@
 						include("adventure.php"); 
 					} elseif ($_GET["menu"] == "create_story") {
 						include("create_story.php");
+					} elseif ($_GET["menu"] == "chars") {
+						include("chars.php");
+					} elseif ($_GET["menu"] == "irc") {
+						include("irc.php");
 					}
 				} else {
 					echo "Du bist nicht eingelogt!";
@@ -65,3 +70,6 @@
 		?>
 	</body>
 </html>
+<?php>
+	ob_end_flush();
+?>

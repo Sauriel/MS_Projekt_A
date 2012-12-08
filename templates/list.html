@@ -1,0 +1,55 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
+<html>
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+<title>Characters</title>
+<style type="text/css">
+    table {
+        width: 100%;
+    } 
+    table tr {
+        height: 25px;
+        width: 10%;
+        text-align: center;
+    }
+    .container {
+        width: 100%;
+    }
+</style>
+</head>
+<body>
+    <div class="container">
+	    <h1>Charaktere:<a href="index.php?menu=chars&action=rec" style="float:right; padding-top:3px;"><img src="images/add.png" alt="Add new character" title="Add new character" /></a></h1>
+	    <br />    
+	    <br />
+	    <table>
+	        <tr>
+	            <th>Bearbeiten</th>
+	            <th>Name</th>
+	            <th>Geschlecht</th>
+	            <th>Rasse</th>
+	            <th>Klasse</th>
+	            <th>L&ouml;schen</th>
+	        </tr>
+	        <? if(count($data) > 0): ?>
+		        <?php foreach($data as $char): ?>
+		            <tr>
+		              <td><a href="index.php?menu=chars&action=rec&id=<?php echo $char['id']; ?>"><img src="images/edit.png" alt="Edit" title="Edit" /></a></td>
+				      <td><?php echo $char['name']; ?></td>
+				      <td><?php echo $char['gender']; ?></td>
+				      <td><?php echo $char['race']; ?></td>
+				      <td><?php echo $char['class']; ?></td>
+				      <td><a href="index.php?menu=chars&action=delete&id=<?php echo $char['id']; ?>"><img src="images/delete.png" alt="Delete" title="Delete" /></a></td>
+		            </tr>
+		        <?php endforeach; ?>
+	        <? else: ?>
+		        <tr>
+		            <td colspan="6">Keien Charaktere hinzugef&uuml;gt</td>
+		        </tr>
+	        <? endif ?>        
+	    </table>
+	    </br>
+	    <a href="index.php?menu=adventuretime">Zur&uuml;ck</a>
+    </div>
+</body>
+</html>

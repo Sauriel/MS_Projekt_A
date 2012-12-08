@@ -6,15 +6,18 @@ SESSION_START();
 		
 		echo '<html>';
 		echo '<body>';
-		echo 	'<table border="1" align="center">';
+		echo 	'<table border="0" align="center">';
 		echo 		'<tr>';
 		echo			'<td>';
 							// iframe ist eine Methode um z.B. einen IRC in eine Website einzubetten.
-		echo				'<iframe src="http://lightirc.com/start/?host=irc.lightirc.com';
+							
+		echo				'<iframe src="http://webchat.quakenet.org/?nick='.$_SESSION["user"]["username"].'&channels=' . $_server_channel . '&uio=MTE9MjE131" width="550" height="600"></iframe>';
+		
+		/*echo				'<iframe src="http://lightirc.com/start/?host=irc.lightirc.com';
 		echo				'&autojoin=%23rpg_irc&language=de';
 		echo				'&showNickSelection=true&nick='.$_SESSION["user"]["username"].'&showIdentifySelection=false"';
-		echo				'style="width:800px; height:400px;">';
-		echo				'</iframe>';
+		echo				'style="width:550px; height:400px;">';
+		echo				'</iframe>'; */
 		echo			'</td>';
 		echo		'</tr>';
 		echo		'<tr>';

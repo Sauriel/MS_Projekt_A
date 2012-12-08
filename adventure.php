@@ -15,3 +15,7 @@ echo $_linfo[long_info];
 	<form action="index.php" method="post">
 	<input type="submit" value="Zur&uuml;ck">
 	</form>
+	</br>
+	<a href="index.php?menu=chars">Charaktere</a>
+	</br>
+	<a href="index.php?menu=irc">Chat beitreten</a>

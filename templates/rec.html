@@ -1,0 +1,143 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
+<html>
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+<title>Add Character</title>
+<style type="text/css">
+    .lightGray {
+        background-color: #C5C5C5;
+    }
+    table tr {
+        height: 25px;
+    }
+    table td {
+        /*width: 170px;*/
+    }
+    table td.center {
+        /*width: 470px;*/
+    }    
+    table td.image {
+        width: 170px;
+        height: 250px;
+    }
+    .button {
+        width: 150px;
+        height: 25px;
+    } 
+</style>
+</head>
+<body>
+    <?php if (isset($error) && strlen($error) > 0): ?>
+        <h2><?php echo $error; ?></h2>
+    <?php endif; ?>
+    <form method="POST" name="index.php?menu=chars">
+	    <table>
+	        <tr>
+	            <?php if (isset($char['img_src']) && strlen($char['img_src']) > 0): ?>
+	               <td class="lightGray image">
+	                   <img src="<?php echo $char['img_src']; ?>" width="170px"><input type="hidden" name="img_src" value="<?php echo $char['img_src']; ?>" />
+                   </td>
+	            <?php else: ?>
+	               <td class="lightGray image">
+	                   <img src="images/default.png">
+	                   <input type="text" name="img_src" size="30" value="<?php echo $char['img_src']; ?>" />
+	               </td>
+                <?php endif; ?>
+	            <td class="center"></td>
+	            <td><!--  --></td>
+	            <td><!--  --></td>
+	        </tr>
+	        <tr>
+	            <td class="lightGray"><strong>Name:</strong></td>
+			    <?php if (isset($char['name']) && strlen($char['name']) > 0): ?>
+			        <td class="lightGray"><input type="hidden" name="name" value="<?php echo $char['name']; ?>" /><?php echo $char['name']; ?></td>
+			    <?php else: ?>
+		            <td class="lightGray"><input type="text" name="name" size="50" value="<?php echo $char['name']; ?>" /></td>
+			    <?php endif; ?>	            
+	            <td class="lightGray"><!--  --></td>
+	            <td><!--  --></td>
+	        </tr>
+	        <tr>
+	            <td class="lightGray"><strong>Geschlecht</strong></td>
+	            <td><input type="text" name="gender" size="60" value="<?php echo $char['gender']; ?>" /></td>
+	            <td class="lightGray"><!--  --></td>
+	            <td><!--  --></td>
+	        </tr>
+	        <tr>
+	            <td class="lightGray"><strong>Rasse</strong></td>
+	            <td><input type="text" name="race" size="60" value="<?php echo $char['race']; ?>" /></td>
+	            <td class="lightGray"><!--  --></td>
+	            <td><!--  --></td>
+	        </tr>
+	        <tr>
+	            <td class="lightGray"><strong>Klasse</strong></td>
+	            <td><input type="text" name="class" size="60" value="<?php echo $char['class']; ?>" /></td>
+	            <td class="lightGray"><!--  --></td>
+	            <td><!--  --></td>
+	        </tr>           
+	        <tr>
+	            <td class="lightGray"><!--  --></td>
+	            <td><!--  --></td>
+	            <td class="lightGray"><!--  --></td>
+	            <td><!--  --></td>
+	        </tr>        
+	        <tr>
+	            <td class="lightGray"><strong>Lebenspunkte</strong></td>
+	            <td><input type="text" name="hp" size="60" value="<?php echo $char['hp']; ?>" /></td>
+	            <td class="lightGray"><!--  --></td>
+	            <td><!--  --></td>
+	        </tr>
+	        <tr>
+	            <td class="lightGray"><strong>Mana</strong></td>
+	            <td><input type="text" name="mp" size="60" value="<?php echo $char['mp']; ?>" /></td>
+	            <td class="lightGray"><!--  --></td>
+	            <td><!--  --></td>
+	        </tr>
+	        <tr>
+	            <td class="lightGray"><strong>Ausdauer</strong></td>
+	            <td><input type="text" name="stamina" size="60" value="<?php echo $char['stamina']; ?>" /></td>
+	            <td class="lightGray"><!--  --></td>
+	            <td><!--  --></td>
+	        </tr>
+	        <tr>
+	            <td class="lightGray"><!--  --></td>
+	            <td><!--  --></td>
+	            <td class="lightGray"><!--  --></td>
+	            <td><!--  --></td>
+	        </tr>  
+	        <tr>
+	            <td class="lightGray"><strong>Geschichte</strong></td>
+	            <td><textarea type="text" name="story" cols="50" rows="5"><?php echo $char['story']; ?></textarea></td>
+	            <td class="lightGray"><!--  --></td>
+	            <td><!--  --></td>
+	        </tr>
+	        <tr>
+	            <td class="lightGray"><!--  --></td>
+	            <td><!--  --></td>
+	            <td class="lightGray"><!--  --></td>
+	            <td><!--  --></td>
+	        </tr>     
+	        <tr>
+	            <td class="lightGray"><strong>Gold</strong></td>
+	            <td><input type="text" name="gold" size="60" value="<?php echo $char['gold']; ?>" /></td>
+                <td class="lightGray"><!--  --></td>
+                <td><!--  --></td>
+	        </tr>
+            <tr>
+                <td class="lightGray"><strong>Inventar</strong></td>
+                <td><input type="text" name="inventar" size="60" value="<?php echo $char['inventar']; ?>" /></td>
+                <td class="lightGray"><!--  --></td>
+                <td><!--  --></td>                            
+            </tr>    	            
+	        <tr>
+	            <td class="lightGray"><!--  --></td>
+	            <td><!--  --></td>
+	            <td class="lightGray"><!--  --></td>
+	            <td><!--  --></td>
+	        </tr>                                  
+	    </table>
+	    <input type="submit" name="action" value="Speichern" class="button" />
+	    <input type="submit" name="action" value="Abbrechen" class="button" />
+    </form>
+</body>
+</html>
