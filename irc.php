@@ -8,16 +8,13 @@ SESSION_START();
 		echo '<body>';
 		echo 	'<table border="0" align="center">';
 		echo 		'<tr>';
-		echo			'<td>';
+		echo			'<td colspan="2">';
 							// iframe ist eine Methode um z.B. einen IRC in eine Website einzubetten.
-							
-		echo				'<iframe src="http://webchat.quakenet.org/?nick='.$_SESSION["user"]["username"].'&channels=' . $_server_channel . '&uio=MTE9MjE131" width="550" height="600"></iframe>';
-		
-		/*echo				'<iframe src="http://lightirc.com/start/?host=irc.lightirc.com';
+		echo				'<iframe src="http://lightirc.com/start/?host=irc.lightirc.com';
 		echo				'&autojoin=%23rpg_irc&language=de';
 		echo				'&showNickSelection=true&nick='.$_SESSION["user"]["username"].'&showIdentifySelection=false"';
-		echo				'style="width:550px; height:400px;">';
-		echo				'</iframe>'; */
+		echo				'style="width:550px; height:600px;">';
+		echo				'</iframe>';
 		echo			'</td>';
 		echo		'</tr>';
 		echo		'<tr>';
@@ -30,8 +27,11 @@ SESSION_START();
 		echo					'<input type=submit name=submit value="Zur&uuml;ck">';
 		echo				'</form>';
 		echo			'</td>';
-		echo		'</tr>';
-		echo 	'</table>';
+		echo			'<td>';
+		echo				'<p>Bot Befehle:<br>ENDBOT - beendet den Bot.<br>RTD X - W&uuml;rfel mit einem Xer W&uuml;rfel.</p>';
+		echo			'</td>';
+		echo			'</tr>';
+		echo 		'</table>';
 		echo '</body>';
 		echo '</html>';
 		
